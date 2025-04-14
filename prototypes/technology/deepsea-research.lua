@@ -8,9 +8,7 @@ data:extend {{
     effects = effects,
     prerequisites = {
         "maraxsis-research-vessel",
-        "maraxsis-stone-centrifuging",
-        "maraxsis-liquid-atmosphere",
-        "maraxsis-effect-transmission-2",
+        "maraxsis-liquid-atmosphere"
     },
     unit = {
         count = 2000,

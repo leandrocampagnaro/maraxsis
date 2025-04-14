@@ -18,7 +18,6 @@ local function add_sound_item(name, move_sound, pick_sound, drop_sound)
 end
 
 add_sound_item("maraxsis-fishing-tower", item_sounds.fluid_inventory_move, item_sounds.fluid_inventory_pickup, item_sounds.fluid_inventory_move)
-add_sound_item("maraxsis-big-cliff-explosives", item_sounds.atomic_bomb_inventory_move, item_sounds.atomic_bomb_inventory_pickup, item_sounds.atomic_bomb_inventory_move)
 add_sound_item("maraxsis-diesel-submarine", item_sounds.mechanical_large_inventory_move, item_sounds.mechanical_large_inventory_pickup, item_sounds.mechanical_large_inventory_move)
 add_sound_item("maraxsis-nuclear-submarine", item_sounds.mechanical_large_inventory_move, item_sounds.mechanical_large_inventory_pickup, item_sounds.mechanical_large_inventory_move)
 add_sound_item("maraxsis-hydro-plant", item_sounds.fluid_inventory_move, item_sounds.fluid_inventory_pickup, item_sounds.fluid_inventory_move)
@@ -41,7 +40,4 @@ add_sound_item("maraxsis-abyssal-diving-gear", item_sounds.metal_large_inventory
 add_sound_item("maraxsis-trench-duct", item_sounds.metal_large_inventory_move, item_sounds.metal_large_inventory_pickup, item_sounds.metal_large_inventory_move)
 add_sound_item("maraxsis-empty-research-vessel", item_sounds.metal_large_inventory_move, item_sounds.metal_large_inventory_pickup, item_sounds.metal_large_inventory_move)
 add_sound_item("maraxsis-salt-reactor", item_sounds.reactor_inventory_move, item_sounds.reactor_inventory_pickup, item_sounds.reactor_inventory_move)
-add_sound_item("maraxsis-electricity", item_sounds.electric_large_inventory_move, item_sounds.electric_large_inventory_pickup, item_sounds.electric_large_inventory_move)
 add_sound_item("hydraulic-science-pack", item_sounds.science_inventory_move, item_sounds.science_inventory_pickup, item_sounds.science_inventory_move)
-add_sound_item("maraxsis-conduit", item_sounds.mechanical_inventory_move, item_sounds.mechanical_inventory_pickup, item_sounds.mechanical_inventory_move)
-add_sound_item("maraxsis-fat-man", item_sounds.atomic_bomb_inventory_move, item_sounds.atomic_bomb_inventory_pickup, item_sounds.atomic_bomb_inventory_move)

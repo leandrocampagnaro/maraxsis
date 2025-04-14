@@ -154,6 +154,8 @@ data:extend {{
     pictures = salt_variants,
     icon_size = 64,
     stack_size = 200,
+    fuel_value = "100MJ",
+    fuel_category = "salt",
 }}
 
 data:extend {{

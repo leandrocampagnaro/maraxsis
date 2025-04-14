@@ -24,7 +24,7 @@ data:extend {{
     },
     allow_productivity = true,
     main_product = "maraxsis-fish-food",
-    category = "maraxsis-hydro-plant-or-biochamber"
+    category = "organic-or-assembling"
 }}
 
 data:extend {{

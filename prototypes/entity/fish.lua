@@ -134,27 +134,6 @@ end
 add_to_tech("maraxsis-fishing-tower")
 add_to_tech("maraxsis-fish-food")
 
-data:extend {{
-    type = "recipe",
-    name = "maraxsis-carbon",
-    enabled = false,
-    energy_required = 4,
-    ingredients = {
-        {type = "item", name = "maraxsis-tropical-fish", amount = 1},
-    },
-    results = {
-        {type = "item", name = "carbon", amount = 8},
-    },
-    category = "maraxsis-smelting-or-biochamber",
-    allow_productivity = true,
-    main_product = "carbon",
-    icon = "__maraxsis__/graphics/icons/burnt-fish.png",
-    icon_size = 64,
-    show_amount_in_title = false,
-    auto_recycle = false,
-    surface_conditions = maraxsis.surface_conditions(),
-}}
-add_to_tech("maraxsis-carbon")
 
 local tropical_fish_variants = {}
 for i, v in pairs(fish) do

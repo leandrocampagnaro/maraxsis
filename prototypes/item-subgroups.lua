@@ -72,7 +72,6 @@ order_subgroup("item", "maraxsis-sonar", "d[radar]-b[sonar]-a[sonar]", data.raw.
 order_subgroup("lamp", "maraxsis-sonar-light-1", "d[radar]-b[sonar]-b[sonar-light-1]", data.raw.item.radar.subgroup)
 order_subgroup("lamp", "maraxsis-sonar-light-2", "d[radar]-b[sonar]-c[sonar-light-2]", data.raw.item.radar.subgroup)
 order_subgroup("item", "maraxsis-salt-reactor", "h[salt-reactor]-a[reactor]", "energy")
-order_subgroup("item", "maraxsis-electricity", "h[salt-reactor]-b[electricity]", "energy")
 
 order_subgroup("fluid", "maraxsis-saline-water", "f[maraxsis-fluids]-a[saline-water]", "fluid")
 order_subgroup("fluid", "maraxsis-brackish-water", "f[maraxsis-fluids]-b[brackish-water]", "fluid")
@@ -80,9 +79,6 @@ order_subgroup("fluid", "maraxsis-oxygen", "f[maraxsis-fluids]-c[oxygen]", "flui
 order_subgroup("fluid", "maraxsis-hydrogen", "f[maraxsis-fluids]-d[hydrogen]", "fluid")
 order_subgroup("fluid", "maraxsis-atmosphere", "f[maraxsis-fluids]-f[atmosphere]", "fluid")
 order_subgroup("fluid", "maraxsis-liquid-atmosphere", "f[maraxsis-fluids]-f[liquid-atmosphere]", "fluid")
-order_subgroup("capsule", "maraxsis-big-cliff-explosives", "e[big-cliff-explosives]", data.raw.capsule["cliff-explosives"].subgroup)
-order_subgroup("ammo", "maraxsis-fat-man", "e[maraxsis-fat-man]", data.raw.ammo["artillery-shell"].subgroup)
 order_subgroup("resource", "maraxsis-coral", "x[maraxsis-coral]", "mineable-fluids")
-order_subgroup("item", "maraxsis-conduit", data.raw.item.beacon.order .. "a[maraxsis-conduit]", data.raw.item.beacon.subgroup)
 
 require "compat.schall-transport-group"

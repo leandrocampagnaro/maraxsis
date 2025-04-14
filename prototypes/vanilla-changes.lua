@@ -27,12 +27,6 @@ add_hydraulic_pack("promethium-science-pack", false)
 table.insert(data.raw["technology"]["promethium-science-pack"].prerequisites, "maraxsis-deepsea-research")
 add_hydraulic_pack("research-productivity", false)
 
-data.raw.recipe["pump"].category = "maraxsis-hydro-plant-or-assembling"
-data.raw.recipe["pipe"].category = "maraxsis-hydro-plant-or-assembling"
-data.raw.recipe["pipe-to-ground"].category = "maraxsis-hydro-plant-or-assembling"
-data.raw.recipe["storage-tank"].category = "maraxsis-hydro-plant-or-assembling"
-data.raw.recipe["coal-synthesis"].category = "maraxsis-hydro-plant-or-chemistry"
-
 for _, silo in pairs(data.raw["rocket-silo"]) do
     if silo.fixed_recipe == "rocket-part" then
         silo.fixed_recipe = nil
@@ -88,10 +82,6 @@ for _, effect in pairs(data.raw.technology["spidertron"].effects) do
 end
 data.raw.technology["spidertron"].effects = new_spidertron_effects
 
-data.raw.recipe["ice-melting"].category = "maraxsis-hydro-plant-or-chemistry"
-data.raw.recipe["advanced-thruster-fuel"].category = "maraxsis-hydro-plant-or-chemistry"
-data.raw.recipe["advanced-thruster-oxidizer"].category = "maraxsis-hydro-plant-or-chemistry"
-
 -- https://github.com/notnotmelon/maraxsis/issues/23
 for _, projectile in pairs(data.raw.projectile) do
     local _, target_effects = pcall(function() return projectile.action.action_delivery.target_effects end)
@@ -134,13 +124,6 @@ for _, armor in pairs(data.raw.armor) do
     ::continue::
 end
 
-if not mods["foundry-expanded"] then
-    data.raw.recipe["engine-unit"].category = "maraxsis-hydro-plant-or-advanced-crafting"
-end
-if not mods["electromagnetic-plant-expanded"] then
-    data.raw.recipe["electric-engine-unit"].category = "maraxsis-hydro-plant-or-advanced-crafting"
-end
-
 for _, module in pairs(data.raw.module) do
     if module.name:find("quality%-module") and not module.beacon_tint then
         module.beacon_tint = {
@@ -150,13 +133,11 @@ for _, module in pairs(data.raw.module) do
     end
 end
 
--- add vehicle acceleration to uranium fuel cells
-
-local uranium_fuel_cell = data.raw.item["uranium-fuel-cell"]
-local nuclear_fuel = data.raw.item["nuclear-fuel"]
-uranium_fuel_cell.fuel_acceleration_multiplier = nuclear_fuel.fuel_acceleration_multiplier
-uranium_fuel_cell.fuel_top_speed_multiplier = nuclear_fuel.fuel_top_speed_multiplier
-uranium_fuel_cell.fuel_emissions_multiplier = nuclear_fuel.fuel_emissions_multiplier
-uranium_fuel_cell.fuel_glow_color = nuclear_fuel.fuel_glow_color
-uranium_fuel_cell.fuel_glow_color = nuclear_fuel.fuel_acceleration_multiplier_quality_bonus
-uranium_fuel_cell.fuel_glow_color = nuclear_fuel.fuel_top_speed_multiplier_quality_bonus
+data:extend(
+{
+  {
+    type = "fuel-category",
+    name = "salt"
+  }
+}
+)

@@ -5,7 +5,6 @@ require "prototypes.default-import-location"
 require "prototypes.item-sounds"
 require "prototypes.fluid-void"
 require "prototypes.entity.regulator-fluidbox"
-require "prototypes.research-vessel"
 
 require "compat.aai-industry"
 require "compat.aai-signal-transmission"
@@ -107,39 +106,6 @@ data.raw.recipe["maraxsis-glass-panes-recycling"].results = {
     {type = "item", name = "maraxsis-limestone", amount = 1, probability = 0.25},
 }
 
--- salt reactor localised description
-local electricity_description = {""}
-
-for _, quality in pairs(data.raw.quality) do
-    if quality.hidden then goto continue end
-    local quality_name = quality.localised_name or {"quality-name." .. quality.name}
-
-    local quality_level = quality.level
-    if quality_level >= 5 and not mods["infinite-quality-tiers"] then quality_level = quality_level - 1 end
-    local mj = 10 * (2 ^ quality_level)
-
-    table.insert(electricity_description, {"recipe-description.maraxsis-electricity-quality-description", quality.name, quality_name, tostring(mj)})
-    table.insert(electricity_description, "\n")
-    ::continue::
-end
-electricity_description[#electricity_description] = nil
-
-electricity_description = maraxsis.shorten_localised_string(electricity_description)
-
-data.raw.recipe["maraxsis-electricity"].localised_description = {
-    "recipe-description.maraxsis-electricity",
-    electricity_description
-}
-
-data.raw.furnace["maraxsis-salt-reactor"].localised_description = {
-    "entity-description.maraxsis-salt-reactor",
-    electricity_description
-}
-
-data.raw["electric-energy-interface"]["maraxsis-salt-reactor-energy-interface"].localised_description = {
-    "entity-description.maraxsis-salt-reactor",
-    electricity_description
-}
 
 -- regulator factoriopedia description
 

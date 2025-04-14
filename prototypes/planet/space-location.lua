@@ -10,7 +10,7 @@ data:extend {maraxsis.merge(data.raw.planet.gleba, {
     surface_properties = {
         ["day-night-cycle"] = 5 * minute,
         ["magnetic-field"] = 25,
-        ["solar-power"] = 100,
+        ["solar-power"] = 10,
         pressure = 200000,
         gravity = 20,
     },

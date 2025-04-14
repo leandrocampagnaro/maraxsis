@@ -1,5 +1,3 @@
-local easy_mode = not not mods["no-quality"]
-
 local hit_effects = require("__base__/prototypes/entity/hit-effects")
 local sounds = require("__base__/prototypes/entity/sounds")
 
@@ -94,13 +92,6 @@ data:extend {{
     name = "maraxsis-hydro-plant-or-foundry",
 }}
 
-local localised_description
-if easy_mode then
-    localised_description = {"entity-description.maraxsis-hydro-plant"}
-else
-    localised_description = {"", {"entity-description.maraxsis-hydro-plant"}, "\n", {"description.base-quality", tostring(50)}}
-end
-
 data:extend {{
     type = "assembling-machine",
     name = "maraxsis-hydro-plant",
@@ -128,7 +119,7 @@ data:extend {{
     dying_explosion = "big-explosion",
     circuit_connector = circuit_connector_definitions["maraxsis-hydro-plant"],
     circuit_wire_max_distance = _G.default_circuit_wire_max_distance,
-    localised_description = localised_description,
+    localised_description = {"entity-description.maraxsis-hydro-plant"},
     resistances = {
         {type = "physical", percent = 50},
         {type = "fire",     percent = 100},
@@ -143,7 +134,7 @@ data:extend {{
     water_reflection = require("__space-age__.prototypes.entity.electromagnetic-plant-pictures").water_reflection,
     collision_box = {{-1.9, -1.9}, {1.9, 1.9}},
     selection_box = {{-2, -2}, {2, 2}},
-    effect_receiver = (not mods["no-quality"]) and {base_effect = {quality = 5}} or nil,
+    effect_receiver = { base_effect = { productivity = 0.5 }},
     drawing_box_vertical_extension = 1,
     damaged_trigger_effect = hit_effects.entity(),
     fluid_boxes = {
@@ -259,35 +250,3 @@ data:extend {{
     surface_conditions = maraxsis.surface_conditions(),
 }}
 
-data:extend {{
-    type = "recipe",
-    name = "maraxsis-holmium-recrystalization",
-    ingredients = {
-        {type = "fluid", name = "holmium-solution", amount = 50},
-        {type = "item",  name = "holmium-ore",      amount = 1},
-    },
-    results = {
-        {type = "item", name = "holmium-plate", amount = 5},
-    },
-    energy_required = data.raw.recipe["holmium-plate"].energy_required * 5,
-    category = "maraxsis-hydro-plant",
-    enabled = false,
-    auto_recycle = false,
-    icons = {
-        {
-            icon = "__space-age__/graphics/icons/holmium-plate.png",
-            icon_size = 64,
-        },
-        {
-            icon = "__space-age__/graphics/icons/fluid/holmium-solution.png",
-            icon_size = 64,
-            size = 0.5,
-            shift = {-8, -8}
-        },
-    }
-}}
-
-table.insert(data.raw.technology["holmium-processing"].effects, {
-    type = "unlock-recipe",
-    recipe = "maraxsis-holmium-recrystalization"
-})
