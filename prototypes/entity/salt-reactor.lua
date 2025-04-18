@@ -3,7 +3,7 @@ local sounds = require("__base__.prototypes.entity.sounds")
 
 data:extend({
     {
-      type = "fusion-reactor",
+      type = "fusion-generator",
       name = "maraxsis-salt-reactor",
       factoriopedia_description = {"factoriopedia-description.maraxsis-salt-reactor"},
       icon = "__maraxsis__/graphics/icons/salt-reactor.png",
@@ -44,79 +44,89 @@ data:extend({
       },
   
       vehicle_impact_sound = sounds.generic_impact,
-      maraxsis_buildability_rules = {water = true, dome = true, coral = true, trench = true, trench_entrance = false, trench_lava = false},
-      icon_size = 64,
-      resistances = {
-          {
-              type = "fire",
-              percent = 80
-          }
-      },
-      icon_draw_specification = {shift = {0, -0.5}, scale = 1.5},
-      icons_positioning = {{
-          inventory_index = defines.inventory.furnace_modules, shift = {0, 0.9}, max_icons_per_row = 3
-      }},
-      graphics_set = require ("__maraxsis__.prototypes.entity.salt-reactor-pictures").reactor_graphics_set,
-      energy_source =
-      {
-        type = "electric",
-        usage_priority = "primary-output",
-        output_flow_limit = "30MW",
-        buffer_capacity = "5MJ",
-        drain = "1MW",
-      },
-      burner =
-      {
-        type = "burner",
-        fuel_categories = {"salt"},
-        effectivity = 1,
-        fuel_inventory_size = 1,
-        emissions_per_minute = { pollution = 0 },
-        light_flicker =
-        {
-          color = {1,0,0.7},
-          minimum_intensity = 0.0,
-          maximum_intensity = 0.1,
-        }
-      },
-      power_input = "4MW",
-      input_fluid_box =
-      {
-          production_type = "input",
-          pipe_picture = require("__space-age__.prototypes.entity.electromagnetic-plant-pictures").pipe_pictures,
-          pipe_picture_frozen = require("__space-age__.prototypes.entity.electromagnetic-plant-pictures").pipe_pictures_frozen,
-          pipe_covers = pipecoverspictures(),
-          pipe_connections =
-          {
-              { flow_direction ="input", position = { -1.5, -2.5   }, direction = defines.direction.north },
-              { flow_direction ="input", position = {  1.5, -2.5   }, direction = defines.direction.north },
-              { flow_direction ="input", position = { -1.5, 2.5   }, direction = defines.direction.south },
-              { flow_direction ="input", position = {  1.5, 2.5   }, direction = defines.direction.south },
-          },
-          secondary_draw_orders = {north = -1},
-          volume = 1000,
-          filter = "lava",
-      },
-      output_fluid_box =
-      {
-          production_type = "output",
-          pipe_picture = require("__space-age__.prototypes.entity.electromagnetic-plant-pictures").pipe_pictures,
-          pipe_picture_frozen = require("__space-age__.prototypes.entity.electromagnetic-plant-pictures").pipe_pictures_frozen,
-          pipe_covers = pipecoverspictures(),
-          pipe_connections =
-          {
-              { flow_direction ="output", position = {  2.5,   -1.5 }, direction = defines.direction.east  },
-              { flow_direction ="output", position = {  2.5,    1.5 }, direction = defines.direction.east  },
-              { flow_direction ="output", position = { -2.5,    1.5 }, direction = defines.direction.west  },
-              { flow_direction ="output", position = { -2.5,   -1.5 }, direction = defines.direction.west  },
-          },
-          volume = 1000,
-          filter = "lava",
-      },
-      max_fluid_usage = 100/second,
+  
+      max_fluid_usage = 10,
     }
   })
+  
 
+data:extend {{
+    type = "fusion-generator",
+    name = "maraxsis-salt-reactor",
+    icon = "__maraxsis__/graphics/icons/salt-reactor.png",
+    maraxsis_buildability_rules = {water = true, dome = true, coral = true, trench = true, trench_entrance = false, trench_lava = false},
+    icon_size = 64,
+    flags = {"placeable-neutral", "placeable-player", "player-creation"},
+    minable = {mining_time = 0.5, result = "maraxsis-salt-reactor"},
+    max_health = 1000,
+    corpse = "big-remnants",
+    dying_explosion = "medium-explosion",
+    working_sound = {
+        sound = {
+            filename = "__maraxsis__/sounds/salt-reactor.ogg",
+            volume = 1,
+        },
+        apparent_volume = 1.5,
+        max_sounds_per_type = 3,
+        audible_distance_modifier = 1,
+        fade_in_ticks = 4,
+        fade_out_ticks = 20
+    },
+    resistances = {
+        {
+            type = "fire",
+            percent = 80
+        }
+    },
+    collision_box = {{-2.9, -2.9}, {2.9, 2.9}},
+    selection_box = {{-3, -3}, {3, 3}},
+    icon_draw_specification = {shift = {0, -0.5}, scale = 1.5},
+    icons_positioning = {{
+        inventory_index = defines.inventory.furnace_modules, shift = {0, 0.9}, max_icons_per_row = 3
+    }},
+    graphics_set = require ("__maraxsis__.prototypes.entity.salt-reactor-pictures").generator_graphics_set,
+    --graphics_set = require ("__space-age__.prototypes.entity.fusion-system-pictures").generator_graphics_set,
+    energy_source =
+    {
+      type = "electric",
+      usage_priority = "secondary-output",
+      output_flow_limit = "12MW",
+    },
+    input_fluid_box =
+    {
+        production_type = "input",
+        pipe_picture = require("__space-age__.prototypes.entity.electromagnetic-plant-pictures").pipe_pictures,
+        pipe_picture_frozen = require("__space-age__.prototypes.entity.electromagnetic-plant-pictures").pipe_pictures_frozen,
+        pipe_covers = pipecoverspictures(),
+        pipe_connections =
+        {
+            { flow_direction ="input", position = { -1.5, -2.5   }, direction = defines.direction.north },
+            { flow_direction ="input", position = {  1.5, -2.5   }, direction = defines.direction.north },
+            { flow_direction ="input", position = { -1.5, 2.5   }, direction = defines.direction.south },
+            { flow_direction ="input", position = {  1.5, 2.5   }, direction = defines.direction.south },
+        },
+        secondary_draw_orders = {north = -1},
+        volume = 1000,
+        filter = "lava",
+    },
+    output_fluid_box =
+    {
+        production_type = "output",
+        pipe_picture = require("__space-age__.prototypes.entity.electromagnetic-plant-pictures").pipe_pictures,
+        pipe_picture_frozen = require("__space-age__.prototypes.entity.electromagnetic-plant-pictures").pipe_pictures_frozen,
+        pipe_covers = pipecoverspictures(),
+        pipe_connections =
+        {
+            { flow_direction ="output", position = {  2.5,   -1.5 }, direction = defines.direction.east  },
+            { flow_direction ="output", position = {  2.5,    1.5 }, direction = defines.direction.east  },
+            { flow_direction ="output", position = { -2.5,    1.5 }, direction = defines.direction.west  },
+            { flow_direction ="output", position = { -2.5,   -1.5 }, direction = defines.direction.west  },
+        },
+        volume = 1000,
+        filter = "lava",
+    },
+    max_fluid_usage = 1000/second,
+}}
 
 data:extend {{
     type = "recipe-category",
