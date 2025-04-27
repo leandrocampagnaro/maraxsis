@@ -15,6 +15,10 @@ data:extend {{
         {
             type = "unlock-recipe",
             recipe = "maraxsis-geothermal-sulfur"
+        },
+	{
+            type = "unlock-recipe",
+            recipe = "maraxsis-forced-petrogenesis"
         }
     },
     prerequisites = {"maraxsis-piscary", "ducts", "maraxsis-salt-reactor"},
